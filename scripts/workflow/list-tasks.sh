@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 TASK_ROOT="$ROOT_DIR/.workflow/tasks"
 FILTER_STATUS=""
-OUTPUT_MODE="table"
+OUTPUT_MODE="pretty"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -15,8 +15,16 @@ while [ "$#" -gt 0 ]; do
       OUTPUT_MODE="json"
       shift
       ;;
+    --plain)
+      OUTPUT_MODE="plain"
+      shift
+      ;;
+    --pretty)
+      OUTPUT_MODE="pretty"
+      shift
+      ;;
     *)
-      echo "usage: $0 [--status open|closed] [--json]" >&2
+      echo "usage: $0 [--status open|closed] [--json|--pretty|--plain]" >&2
       exit 1
       ;;
   esac
@@ -46,6 +54,24 @@ if [ "$OUTPUT_MODE" = "json" ]; then
     printf '  {"id":"%s","status":"%s","name":"%s","path":"%s"}' "$task_id" "$status" "$task_name" "$task_dir"
   done
   printf '\n]\n'
+  exit 0
+fi
+
+if [ "$OUTPUT_MODE" = "plain" ]; then
+  find "$TASK_ROOT" -mindepth 1 -maxdepth 1 -type d | sort | while read -r task_dir; do
+    task_id="$(basename "$task_dir")"
+    task_name="${task_id#*-}"
+    task_name="${task_name#*-}"
+    status="unknown"
+    if [ -f "$task_dir/TASK.md" ]; then
+      status_line="$(grep -E '^- Status:' "$task_dir/TASK.md" | head -n 1 || true)"
+      status="${status_line#- Status: }"
+    fi
+    if [ -n "$FILTER_STATUS" ] && [ "$status" != "$FILTER_STATUS" ]; then
+      continue
+    fi
+    printf '%s\t%s\t%s\n' "$task_id" "$status" "$task_name"
+  done
   exit 0
 fi
 

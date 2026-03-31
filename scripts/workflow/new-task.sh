@@ -4,6 +4,7 @@ ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 TASK_NAME=""
 CUSTOM_SLUG=""
 TASK_STATUS="open"
+OUTPUT_JSON="0"
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -15,6 +16,10 @@ while [ "$#" -gt 0 ]; do
       TASK_STATUS="${2:-}"
       shift 2
       ;;
+    --json)
+      OUTPUT_JSON="1"
+      shift
+      ;;
     *)
       TASK_NAME="$1"
       shift
@@ -23,7 +28,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 if [ -z "$TASK_NAME" ]; then
-  echo "usage: $0 [--slug custom-slug] [--status open|closed] \"task name\"" >&2
+  echo "usage: $0 [--slug custom-slug] [--status open|closed] [--json] \"task name\"" >&2
   exit 1
 fi
 
@@ -53,4 +58,10 @@ for tpl in TASK PLAN VERIFY REVIEW; do
     "$ROOT_DIR/.workflow/templates/${tpl}.md" > "$TASK_DIR/${tpl}.md"
 done
 sed -i "s/^- Status: open/- Status: $TASK_STATUS/" "$TASK_DIR/TASK.md"
-printf '%s\n' "$TASK_DIR"
+
+if [ "$OUTPUT_JSON" = "1" ]; then
+  printf '{"path":"%s","id":"%s","slug":"%s","status":"%s","name":"%s"}\n' \
+    "$TASK_DIR" "$TASK_ID" "$TASK_SLUG" "$TASK_STATUS" "$TASK_NAME"
+else
+  printf '%s\n' "$TASK_DIR"
+fi

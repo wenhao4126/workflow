@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.4] - 2026-03-31
+
+### Added
+- Added `--json` output to `workflow.sh new`
+- Added `--pretty` and `--plain` output modes to `workflow.sh open`
+- Added `--pretty` and `--plain` output modes to `workflow.sh list`
+- Added real PNG demo asset at `docs/demo/workflow-demo.png`
+
+### Changed
+- Promoted new CLI flags into the documented `workflow.sh` entrypoint
+- Extended `doctor` to check `.github/workflows/shellcheck.yml`
+- Bumped toolkit version to `0.1.4`
+
 ## [v0.1.3] - 2026-03-31
 
 ### Added

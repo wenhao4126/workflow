@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
-MODE="summary"
+MODE="pretty"
 KEYWORD=""
 
 while [ "$#" -gt 0 ]; do
@@ -18,6 +18,14 @@ while [ "$#" -gt 0 ]; do
       MODE="detail"
       shift
       ;;
+    --plain)
+      MODE="plain"
+      shift
+      ;;
+    --pretty)
+      MODE="pretty"
+      shift
+      ;;
     *)
       KEYWORD="$1"
       shift
@@ -26,7 +34,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 if [ -z "$KEYWORD" ]; then
-  echo "usage: $0 [--path|--json|--detail] <task-id-or-keyword>" >&2
+  echo "usage: $0 [--path|--json|--detail|--pretty|--plain] <task-id-or-keyword>" >&2
   exit 1
 fi
 MATCH="$(find "$ROOT_DIR/.workflow/tasks" -mindepth 1 -maxdepth 1 -type d | grep "$KEYWORD" | head -n 1 || true)"
@@ -54,6 +62,12 @@ if [ "$MODE" = "json" ]; then
     "$( [ -f "$MATCH/PLAN.md" ] && echo true || echo false )" \
     "$( [ -f "$MATCH/VERIFY.md" ] && echo true || echo false )" \
     "$( [ -f "$MATCH/REVIEW.md" ] && echo true || echo false )"
+  exit 0
+fi
+
+if [ "$MODE" = "plain" ]; then
+  printf 'path\t%s\n' "$MATCH"
+  printf 'status\t%s\n' "$status"
   exit 0
 fi
 

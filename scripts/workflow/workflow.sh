@@ -2,7 +2,7 @@
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
-VERSION="0.1.3"
+VERSION="0.1.4"
 CMD="${1:-help}"
 shift || true
 
@@ -32,6 +32,12 @@ doctor_check() {
     echo "WARN shellcheck: not found"
   fi
 
+  if [ -f "$ROOT_DIR/.github/workflows/shellcheck.yml" ]; then
+    echo "OK   github action: $ROOT_DIR/.github/workflows/shellcheck.yml"
+  else
+    echo "WARN github action: shellcheck workflow missing"
+  fi
+
   if [ "$missing" -eq 0 ]; then
     echo "doctor: workflow toolkit looks healthy"
   else
@@ -45,15 +51,15 @@ show_help() {
 usage: workflow.sh <command>
 
 commands:
-  help                显示帮助
-  version             显示版本
-  doctor              检查 workflow 目录结构
-  init                初始化 .workflow 目录
-  new "task name"     创建任务
-  list                列出任务
-  open <keyword>      打开任务目录
-  status <keyword>    查看任务状态
-  close <keyword>     关闭任务
+  help                              显示帮助
+  version                           显示版本
+  doctor                            检查 workflow 目录结构
+  init                              初始化 .workflow 目录
+  new [--slug s] [--status x] [--json] "task name"
+  list [--status x] [--json|--pretty|--plain]
+  open [--path|--json|--detail|--pretty|--plain] <keyword>
+  status <keyword>                  查看任务状态
+  close <keyword>                   关闭任务
 USAGE
 }
 

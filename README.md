@@ -134,6 +134,10 @@ If `shellcheck` is not installed, the script will print a hint instead of failin
 
 静态演示素材说明位于：
 - `docs/demo/README-demo.txt`
+- `docs/demo/workflow-demo.png`
+
+![Workflow Demo](docs/demo/workflow-demo.png)
 
 A placeholder for static demo assets is available at:
 - `docs/demo/README-demo.txt`
+- `docs/demo/workflow-demo.png`
