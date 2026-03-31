@@ -129,3 +129,11 @@ bash scripts/lint-shell.sh
 如果本机没有安装 `shellcheck`，脚本会给出提示而不是直接失败。
 
 If `shellcheck` is not installed, the script will print a hint instead of failing hard.
+
+## Demo / 演示
+
+静态演示素材说明位于：
+- `docs/demo/README-demo.txt`
+
+A placeholder for static demo assets is available at:
+- `docs/demo/README-demo.txt`

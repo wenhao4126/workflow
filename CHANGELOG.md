@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.3] - 2026-03-31
+
+### Added
+- Added `--json` output to `workflow.sh open`
+- Added `--json` output to `workflow.sh list` for script integration
+- Added `--status open|closed` support to `workflow.sh new`
+- Added `--status` filtering to `workflow.sh list`
+- Added `--detail` mode to `workflow.sh open` to print `TASK.md`
+- Added static demo placeholder under `docs/demo/`
+
+### Changed
+- Bumped toolkit version to `0.1.3`
+
 ## [v0.1.2] - 2026-03-31
 
 ### Added
