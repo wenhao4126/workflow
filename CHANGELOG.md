@@ -1,7 +1,11 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## [v0.1.5] - 2026-03-31
 
+### Changed
+- Unified CLI help and usage wording across `workflow.sh`, `new`, `list`, `open`, `status`, and `close`
+- Ignored local `TASK_CURRENT.md` task tracking file in `.gitignore`
 ## [v0.1.4] - 2026-03-31
 
 ### Added
