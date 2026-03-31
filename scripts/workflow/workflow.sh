@@ -48,18 +48,18 @@ doctor_check() {
 
 show_help() {
   cat <<'USAGE'
-usage: workflow.sh <command>
+usage: workflow.sh <command> [options]
 
 commands:
-  help                              显示帮助
-  version                           显示版本
-  doctor                            检查 workflow 目录结构
-  init                              初始化 .workflow 目录
-  new [--slug s] [--status x] [--json] "task name"
-  list [--status x] [--json|--pretty|--plain]
-  open [--path|--json|--detail|--pretty|--plain] <keyword>
-  status <keyword>                  查看任务状态
-  close <keyword>                   关闭任务
+  help                                        显示帮助
+  version                                     显示版本
+  doctor                                      检查 workflow 目录结构
+  init                                        初始化 .workflow 目录
+  new [--slug <slug>] [--status <status>] [--json] "task name"
+  list [--status <status>] [--json|--pretty|--plain]
+  open [--path|--json|--detail|--pretty|--plain] <task-id-or-keyword>
+  status [--json] <task-id-or-keyword>
+  close [--json] <task-id-or-keyword>
 USAGE
 }
 

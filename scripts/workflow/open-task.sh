@@ -90,6 +90,6 @@ fi
 
 if [ "$MODE" = "detail" ] && [ -f "$MATCH/TASK.md" ]; then
   echo
-  echo "TASK.md:"
+  echo "TASK.md contents:"
   cat "$MATCH/TASK.md"
 fi

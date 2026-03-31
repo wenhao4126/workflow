@@ -28,7 +28,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 if [ -z "$TASK_NAME" ]; then
-  echo "usage: $0 [--slug custom-slug] [--status open|closed] [--json] \"task name\"" >&2
+  echo "usage: $0 [--slug <slug>] [--status <status>] [--json] \"task name\"" >&2
   exit 1
 fi
 

@@ -24,7 +24,7 @@ while [ "$#" -gt 0 ]; do
       shift
       ;;
     *)
-      echo "usage: $0 [--status open|closed] [--json|--pretty|--plain]" >&2
+      echo "usage: $0 [--status <status>] [--json|--pretty|--plain]" >&2
       exit 1
       ;;
   esac
