@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.2] - 2026-03-31
+
+### Added
+- Added `--path` mode to `workflow.sh open` for script-friendly path-only output
+- Added lightweight table-style output for `workflow.sh list`
+- Added `--slug <value>` support to `workflow.sh new`
+- Added GitHub Actions workflow for automatic shellcheck on push and pull request
+
+### Changed
+- Improved default `open` summary output while keeping shell usage practical
+- Bumped toolkit version to `0.1.2`
+
 ## [v0.1.1] - 2026-03-31
 
 ### Changed
