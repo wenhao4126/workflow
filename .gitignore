@@ -1,0 +1,11 @@
+# Runtime task data
+.workflow/tasks/
+
+# Shell/editor noise
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
