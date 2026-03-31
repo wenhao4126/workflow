@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.1] - 2026-03-31
+
+### Changed
+- Improved `workflow.sh open` output to show task directory, available files, and status summary
+- Bumped toolkit version to `0.1.1`
+
 ## [v0.1.0] - 2026-03-31
 
 ### Added

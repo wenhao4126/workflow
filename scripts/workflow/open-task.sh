@@ -11,4 +11,20 @@ if [ -z "$MATCH" ]; then
   echo "task not found: $KEYWORD" >&2
   exit 1
 fi
-echo "$MATCH"
+
+echo "Task directory:"
+echo "  $MATCH"
+echo
+
+echo "Files:"
+for file in TASK.md PLAN.md VERIFY.md REVIEW.md; do
+  if [ -f "$MATCH/$file" ]; then
+    echo "  - $file"
+  fi
+done
+
+echo
+if [ -f "$MATCH/TASK.md" ]; then
+  echo "Status:"
+  grep -E '^- Status:' "$MATCH/TASK.md" | sed 's/^/  /' || true
+fi
