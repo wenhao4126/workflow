@@ -26,6 +26,12 @@ doctor_check() {
     fi
   done
 
+  if command -v shellcheck >/dev/null 2>&1; then
+    echo "OK   shellcheck: $(command -v shellcheck)"
+  else
+    echo "WARN shellcheck: not found"
+  fi
+
   if [ "$missing" -eq 0 ]; then
     echo "doctor: workflow toolkit looks healthy"
   else

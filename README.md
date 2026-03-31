@@ -1,5 +1,9 @@
 # Workflow Toolkit
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Release](https://img.shields.io/github/v/release/wenhao4126/workflow?display_name=tag)
+![Shell](https://img.shields.io/badge/shell-bash-89e051)
+
 一个独立的、基于文件系统的 workflow 工具链仓库。
 
 An independent, file-system-based workflow toolkit repository.
